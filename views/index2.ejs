@@ -1,0 +1,14 @@
+<%- include('header.ejs')%>
+    <main>
+    <div class = "content">
+        <%if(stories.length) {%>
+            <h2 class='conheader'>Select a story to read</h2>
+            <%stories.forEach(story=>{%>
+                <a href='/stories/<%= story._id%>'><p class='contitle'><%= story.title%></p></a>
+            <% });
+        } else {%>
+            <p>There are no stories to display.</p>
+        <%}%>
+    </div>
+    </main>
+<%- include('footer.ejs')%>

@@ -1,0 +1,30 @@
+<%- include('header.ejs')%>
+<main>
+    <div class = "content">
+        <h4><%= story.title%></h4>
+        <small>Posted <%= story.createdAt%> by <%= story.author.firstName + ' ' + story.author.lastName%></small>
+        <br><br><br>
+        <div id='story'><%= story.content%></div>
+        <div id='story'><%= "Time: " + story.startTime + "-" + story.endTime%></div>
+        <div id='story'><%= "Location: " + story.location%></div>
+        <div id='story'><%= "Hosted by: " + story.host%></div>
+        <div id='story'><%= "Category: " + story.category%></div>
+        <div id='story'>How many RSVPs: 0</div>
+
+        <%if(user == story.author._id) {%>
+            <form>
+                <button type = "submit" formmethod = "GET" formaction = "/stories/<%= story._id%>/edit">Edit</button>
+                <button type = "submit" formmethod = "POST" formaction = "/stories/<%= story._id%>/?_method=DELETE">Delete</button>
+             </form>
+        <%} else if(user && user != story.author._id) { %>
+            <form>
+                <p style='font-size: 17px;'>Would you like to RSVP?</p> <br>
+                <button type = "submit" formmethod = "POST" formaction = "/stories/<%= story._id%>/rsvp" name="rsvp" value="YES">YES</button>
+                <button type = "submit" formmethod = "POST" formaction = "/stories/<%= story._id%>/rsvp" name="rsvp" value="NO">NO</button>
+                <button type = "submit" formmethod = "POST" formaction = "/stories/<%= story._id%>/rsvp" name="rsvp" value="MAYBE">MAYBE</button>
+             </form>
+        <%}%>
+        
+    </div>
+</main>
+<%- include('footer.ejs')%>

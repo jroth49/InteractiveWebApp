@@ -1,0 +1,18 @@
+<%- include('header.ejs')%>
+
+<main>
+<h4>Welcome! <%= user.firstName + " " + user.lastName%></h4>
+<%if(stories.length) {%>
+    <p class='contitle'>You have created the following stories:</p>
+    <%stories.forEach(story=>{%>
+        <a href='/stories/<%=story.id%>'><p class='contitle'><%=story.title%></p></a>
+    <%});
+} else {%>
+    <p class='contitle'>You have not created any stories.</p>
+<%}%>
+    <p class='contitle'>You have created the following RSVPs:</p>
+
+
+</main>
+
+<%- include('footer.ejs')%>
